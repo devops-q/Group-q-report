@@ -32,12 +32,18 @@
 
 %% See component & connector viewpoint: https://github.com/itu-devops/lecture_notes/blob/master/sessions/session_13/Slides.md
 
+
 \subsection{Current state} %% msro
 %% A overview description of our results from the CI chain - testing,  Codeclimate and sonarqube. Everything is passing! 
 %% Be sure to include metrics. 
-We used several static analysis tools and tests to keep the code in good shape. The current, most recent implementation is working correctly and passing all tests: Go linter, Go tests, web end-to-end tests, terraform linter, and terraform observability check.
+We used several static analysis tools and tests to keep the
+code in good shape. The current, most recent implementation
+is working correctly and passing all tests: Go linter, Go 
+tests, web end-to-end tests, terraform linter, and terraform 
+observability check.
 
-Below are overviews of two static code analysis tools applied to the current implementation:
+Below are overviews of two static code analysis tools applied to the 
+current implementation:
 \begin{itemize}
     \item SonarQube: 0 security issues (grade A), 5 reliability issues
     (grade C), 17 maintainability issues (grade A), 2.3\% code duplication
@@ -46,6 +52,7 @@ Below are overviews of two static code analysis tools applied to the current imp
     0 other issues.
 \end{itemize}
 
-Most code duplication and reliability issues can be found in the end-to-end tests.
+Most code duplication and reliability issues can be found in 
+the end-to-end tests.
 
 %% THROUGHOUT THIS ENTIRE SECTION, WE NEED TO ARGUE FOR CHOICES.

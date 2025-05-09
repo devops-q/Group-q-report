@@ -4,23 +4,29 @@
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{hyperref}
+\usepackage{authblk}
+\usepackage{titlepic}
 \usepackage[style=apa, backend=biber]{biblatex}
 \addbibresource{references.bib}
 
-
-
 \title{Group Q DevOps report}
 \author{
-    Michael Jeppesen \\ \texttt{micje@itu.dk} \and
-    Marcin Sroka \\ \texttt{msro@itu.dk} \and
-    Alin Plamadeala \\ \texttt{alpl@itu.dk} \and
-    Philip Blomholt \\ \texttt{alpl@itu.dk}
+  \begin{tabular}[t]{cc}
+    Michael Jeppesen & Marcin Sroka \\
+    \vspace{-1em} {\footnotesize \texttt{micje@itu.dk}} & {\footnotesize \texttt{msro@itu.dk}} \\ 
+    \vspace{1em} Alin Plamadeala & Philip Blomholt \\
+    {\footnotesize\texttt{alpl@itu.dk}} & {\footnotesize\texttt{phbl@itu.dk}}
+  \end{tabular}
 }
+
+\titlepic{\includegraphics[width=0.75\textwidth]{pictures/frontpage.png}}
+
 \date{\today}
 
 \begin{document}
 
 \maketitle
+
 \newpage
 \tableofcontents
 \newpage
