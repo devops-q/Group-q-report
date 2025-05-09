@@ -18,6 +18,10 @@ jobs:
         uses: xu-cheng/latex-action@v3
         with:
           root_file: main.tex
+          args: -pdf -file-line-error -interaction=nonstopmode -shell-escape
+          latexmk_use_lualatex: false  
+          latexmk_shell_escape: true
+          extra_system_packages: "biber"
       - name: Commit report
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
