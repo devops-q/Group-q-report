@@ -14,26 +14,24 @@ jobs:
       - name: Set up Git repository
         uses: actions/checkout@v4
 
-      - name: latex2pdf
-        id: compile-latex-document
-        uses: thomas-chauvet/latex2pdf-action@1.0.5
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v3
         with:
-          output_dir: output
-          main_latex_file: main.tex
-          ctan_packages: >-
-            amsmath 
-            amsfonts 
-            lua-uni-algos 
-            biblatex 
-            biber 
-            latexmk
-            pgf
-            xcolor
-            geometry
-            hyperref
+          root_file: main.tex
+          args: -pdf -file-line-error -interaction=nonstopmode
+          working_directory: .
+          latexmk_use_xelatex: false
+          latexmk_shell_escape: true
+          # Extra packages needed for bibliography
+          extra_system_packages: "biber"
 
+      - name: Create output directory
+        run: mkdir -p output
+        
+      - name: Move PDF to output directory
+        run: mv main.pdf output/main.pdf
+        
       - name: Upload PDF to the workflow tab
-        id: upload-workflow-tab
         uses: actions/upload-artifact@v4
         with:
           name: PDF Output
