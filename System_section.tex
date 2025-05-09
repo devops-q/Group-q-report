@@ -1,0 +1,51 @@
+\section{System perspective} \label{sp}
+%% Short introduction to this section
+\subsection{Design and architecture} %% phbl 
+%% A description of how Minitwit works, including design choices for choosing different architectures.
+
+%% Include a benchmark between using python, C# and Golang. This is to motivate, why we choose Golang. 
+
+\subsection{Dependencies} %% alpl
+%% a description of what is needed to make minitwit work
+
+%% A description of all the different components that we have made. This includes docker, terraform, ansible, github actions, prometheus, .... , and so on.
+\begin{description} 
+    \item[Git/Github] 
+    \item[Terraform] 
+    \item[Docker] 
+    \item[S3] 
+    \item[PostreSQL] 
+    \item[Traefik] 
+    \item[Grafana] 
+    \item[Alloy] 
+    \item[Loki] 
+    \item[Prometheus] 
+    \item[Golang] 
+    \item[Playwright] 
+    \item[Ansible]
+    \item[Bash?]
+\end{description}
+\subsection{Important interactions} % micje
+%% A description of how interactions are made, and processed in the system. This should include an UML Sequence diagram, showing the aforementioned flow. 
+
+%% This needs to be done both on an API level and a GUI-based level?
+
+%% See component & connector viewpoint: https://github.com/itu-devops/lecture_notes/blob/master/sessions/session_13/Slides.md
+
+\subsection{Current state} %% msro
+%% A overview description of our results from the CI chain - testing,  Codeclimate and sonarqube. Everything is passing! 
+%% Be sure to include metrics. 
+We used several static analysis tools and tests to keep the code in good shape. The current, most recent implementation is working correctly and passing all tests: Go linter, Go tests, web end-to-end tests, terraform linter, and terraform observability check.
+
+Below are overviews of two static code analysis tools applied to the current implementation:
+\begin{itemize}
+    \item SonarQube: 0 security issues (grade A), 5 reliability issues
+    (grade C), 17 maintainability issues (grade A), 2.3\% code duplication
+    (Below the suggested 3\% threshold).
+    \item CodeClimate: maintainability grade A, 5 code smells, 2 duplications,
+    0 other issues.
+\end{itemize}
+
+Most code duplication and reliability issues can be found in the end-to-end tests.
+
+%% THROUGHOUT THIS ENTIRE SECTION, WE NEED TO ARGUE FOR CHOICES.
