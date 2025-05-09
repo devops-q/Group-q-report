@@ -26,13 +26,14 @@ While monitoring provides an overview of a system through metrics and health che
 %% A revision of the security assessment we did in an earlier exercise, how we took steps to improve as well as the risk matrix. 
 To identify possible attack surfaces, we made a full port-scan of our server which came up with the following open ports;
 \begin{description}
-    \item[22] ssh
+    \item[22] SSH
     \item[80, 443] web-app through traefik
     \item[3000] grafana
     \item[3100] loki
     \item[12345] alloy
     \item[9090] prometheus
 \end{description}
+We reasoned that the following were already secure; SSH, web-app, grafana and prometheus.
 \subsection{Scaling strategy} %% alpl
 %% The use of swarm as a way to scale, rolling updates, etc.
 
