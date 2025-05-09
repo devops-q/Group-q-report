@@ -14,32 +14,14 @@ jobs:
       - name: Set up Git repository
         uses: actions/checkout@v4
 
-      - name: Compile LaTeX document
-        uses: xu-cheng/latex-action@v3
+      - name: Generate Book PDF
+        uses: hspaans/latexmk-action@v2.0.0
         with:
-          root_file: main.tex
-          args: -pdf -file-line-error -interaction=nonstopmode
-          working_directory: .
-          latexmk_use_xelatex: false
-          latexmk_shell_escape: true
-          # Extra packages needed for bibliography
-          extra_system_packages: "biber"
+          format: pdf
+          filename: main.tex
 
-      - name: Create output directory
-        run: mkdir -p output
-        
-      - name: Move PDF to output directory
-        run: mv main.pdf output/main.pdf
-        
-      - name: Upload PDF to the workflow tab
+      - name: Upload PDF
         uses: actions/upload-artifact@v4
         with:
-          name: PDF Output
-          path: output/main.pdf
-          if-no-files-found: error
-
-      - name: Commit report
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          file_pattern: 'output/*.pdf'
-          commit_message: "Build LaTeX document"
+          name: compiled-book
+          path: main.pdf
