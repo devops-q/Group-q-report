@@ -1,12 +1,10 @@
-name: LateX to PDF
-
+name: LaTeX to PDF
 on:
   push:
     branches: 
       - main
     tags:
        - '*'
-
 jobs:
   build_latex:
     permissions:
@@ -14,17 +12,36 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Git repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+
       - name: latex2pdf
         id: compile-latex-document
         uses: thomas-chauvet/latex2pdf-action@1.0.5
         with:
           output_dir: output
-          main_latex_file: test.tex
-          ctan_packages: amsmath amsfonts lua-uni-algos
+          main_latex_file: main.tex
+          ctan_packages: >-
+            amsmath 
+            amsfonts 
+            lua-uni-algos 
+            biblatex 
+            biber 
+            latexmk
+            pgf
+            xcolor
+            geometry
+            hyperref
+
       - name: Upload PDF to the workflow tab
         id: upload-workflow-tab
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
-          name: output
-          path: output/test.pdf
+          name: PDF Output
+          path: output/main.pdf
+          if-no-files-found: error
+
+      - name: Commit report
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          file_pattern: 'output/*.pdf'
+          commit_message: "Build LaTeX document"
