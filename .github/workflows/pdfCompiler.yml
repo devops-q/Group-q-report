@@ -2,7 +2,7 @@ name: LaTex to PDF
 
 on:
   push:
-  branches:
+    branches:
     - main
 
 jobs:
@@ -10,7 +10,7 @@ jobs:
     permissions:
       contents: write
     runs-on: ubuntu-latest
-      steps:
+    steps:
       - name: Set up Git repository
         uses: actions/checkout@v4
       - name: latex2pdf
