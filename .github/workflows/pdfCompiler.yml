@@ -12,9 +12,9 @@ jobs:
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: | 
+          root_file: 
             report/main.tex
           
           texlive_version: 2024
           continue_on_error: true
-          args: -bibtex
+          args: -biber
