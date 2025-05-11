@@ -17,4 +17,3 @@ jobs:
           
           texlive_version: 2024
           continue_on_error: true
-          args: -biber
