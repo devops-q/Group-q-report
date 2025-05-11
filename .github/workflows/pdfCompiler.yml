@@ -41,4 +41,4 @@ jobs:
           asset_path: ./main.pdf
           asset_name: main.pdf
           asset_content_type: pdf
-          upload_url ${{ steps.create_release.outputs.upload_url}}
+          upload_url: ${{ steps.create_release.outputs.upload_url}}
