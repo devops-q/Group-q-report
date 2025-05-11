@@ -8,6 +8,9 @@ on:
 
 jobs:
   build_latex:
+    permissions: 
+      contents: write
+      
     runs-on: ubuntu-latest
     steps:
       - name: Set up Git repository
