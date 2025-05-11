@@ -12,6 +12,7 @@ jobs:
           root_file: main.tex
 
           args: -bibtex
+          latexmk_use_xelatex: true
       - name: Upload PDF file
         uses: actions/upload-artifact@v4
         with:
