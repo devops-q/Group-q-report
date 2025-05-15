@@ -1,8 +1,6 @@
 name: Release Compiled PDF 
 on:
   push:
-    branches:
-      - main
     tags:
       - '*.*.*'
 
@@ -34,7 +32,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.sha }}
-          release_name: Release ${{ github.sha }}
+          tag_name: ${{ github.GITHUB_REF }}
+          release_name: Release ${{ github.GITHUB_REF }}
           draft: false
           prerelease: false
