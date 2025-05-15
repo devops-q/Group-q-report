@@ -60,8 +60,7 @@ Our logging setup has been based around Grafana Loki as a log aggregation tool, 
     \label{fig:logging}
 \end{figure}
 
-\subsection{Security assessment} %% micje
-%% A revision of the security assessment we did in an earlier exercise, how we took steps to improve as well as the risk matrix. 
+\subsection{Security assessment}
 To identify possible attack surfaces, we made a full port-scan of our server with nmap, which came up with the following open ports;
 \begin{description}
     \item[22] SSH into droplet
@@ -89,8 +88,7 @@ High   & \multicolumn{1}{l|}{SSH}                 & \multicolumn{1}{l|}{}       
 Our solution to this was to stop exposing the ports for Loki and Alloy, as they are on an internal network in the Docker Swarm, and all relevant data from them can be obtained through Grafana, where authentication is required.
 
 The reason our database does not show up as a potential attack surface is that it is running inside a VPC without public internet access, such that only our application has access to it.
-\subsection{Scaling strategy} %% alpl
-%% The use of swarm as a way to scale, rolling updates, etc.
+\subsection{Scaling strategy}
 Our project implements a containerized architecture using Docker Swarm for orchestration, with a setup that provides several key scalability advantages:
 
 \textbf{Container Orchestration with Docker Swarm}
@@ -118,5 +116,5 @@ For the database, we made the choice to use Digital Ocean's managed database ser
 
 The architecture we've implemented provides flexible scaling capabilities through both vertical and horizontal approaches. Vertical scaling can be achieved by upgrading to more powerful VM instances with increased CPU, memory, and storage resources. For horizontal scaling, Docker Swarm's orchestration allows us to seamlessly add additional nodes to the cluster and increase the application replica count. At the same time, Digital Ocean's managed PostgreSQL service enables horizontal read scaling through read-only database nodes. This dual-scaling capability creates a robust foundation for future enhancements, including automated scaling based on load metrics and multi-region deployments for improved global performance and redundancy. Our infrastructure design emphasizes scalability as a core principle, ensuring the system can efficiently adapt to growing demands without significant architectural changes.
 
-\subsection{Use of Artificial Intelligence} %% phbl
+\subsection{Use of Artificial Intelligence}
 In our project, we have used Anthropic’s artificial intelligence tool \textit{Claude} \parencite{claude}. Claude has been helpful when it came to adopting new technologies and frameworks that none of us had worked with prior. A major concern however, has been that Claude often times seems to miss the broader context, we are working on, ignores security concerns, and generally tends to overcomplicate its output. As such, while the use of AI has been helpful in providing an understanding of the different components in our project, it has not been able to meaningfully replace the work of us as developers.
