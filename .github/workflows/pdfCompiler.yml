@@ -39,6 +39,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           asset_path: ./report/main.pdf
-          asset_name: main.pdf
+          asset_name: MSc_group_q.pdf
           asset_content_type: pdf
           upload_url: ${{ steps.create_release.outputs.upload_url}}
