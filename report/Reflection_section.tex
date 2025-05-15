@@ -3,7 +3,7 @@
 We learned about tools that assists with refactor software to a later major version, such as the python library (\texttt{2to3}), and static analysis tools, such as \texttt{shellcheck} and linters. These tools are invaluable for ensuring that code follows best practices and remains well-maintained. Equipped with the awareness of these tools, we are able to keep all future projects in good shape. Additionally, with the use of these tools, we were able to work more efficiently and spend less time on code reviews, since these tools directly enforce a certain convention in the CI chain
 
 
-\subsection{Operation} %% msro
+\subsection{Operation}
 Throughout the project, we learned a major lesson about software. Namely, the key to success is automation and fast feedback loops. If we automate testing, integration, and deployment, then the friction to get from a finished software update to a deployed, working service is minimal. This encourages software evolution in small steps, which in turn makes it much easier to spot bugs and find their cause, and bugs are also found a lot earlier.
 
 At some point, we found that we didn’t set up authentication at the front of Loki
@@ -20,5 +20,5 @@ We also addressed user experience issues, such as timestamps displaying in UTC r
 
 Throughout the project, we continuously improved our maintenance processes by adding automated tests and monitoring for issues we encountered. This allowed us to be proactive rather than reactive, with many potential problems being caught during continuous integration before reaching production.
 
-\subsection{Our approach to DevOps} %% phbl 
+\subsection{Our approach to DevOps}
 Throughout this project, we have sought to implement several DevOps practices to increase the efficiency of our workflow. Here, our initial goal was to reduce the amount of time between committing code and code being reviewed and subsequently merged, which we found to be a tedious process. One of the core ideals of DevOps is being able to reduce this lead time between committing and merging, such that developers can work faster and in smaller batches while still maintaining high code quality \parencite{handbook}. We achieved this principle through the implementation of continuous integration, providing a \textit{standardisation} measure for our coding quality using linters and tests as a requirement for merging a commit. This provided a much lower lead time, since code reviews were no longer being done before a merge, instead requiring our testing suite to pass. This fostered a culture where each of us would be able to work on a task without any major repercussions, thereby increasing both risk-taking and experimentation. Another aspect is that DevOps relates to our ability to automate repetitive tasks in an effort to reduce the time spent on a task, but in extension also avoid human errors that might occur when multistep workflows are required.  
