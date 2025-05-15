@@ -1,5 +1,5 @@
 \section{System perspective} \label{sp}
-\subsection{Design and architecture} %% phbl 
+\subsection{Design and architecture}
 The MiniTwit project is built using a single cloud-based  Virtual machine (\texttt{droplet}) with 1 CPU, 2 GB RAM, and 70 GB Storage, running 9 Docker containers in a Docker swarm setup. Three of these containers contain the MiniTwit replicas, written in Go with the \texttt{Gin} framework for web development. The decision to use Go was based on a desire to learn Go, but more importantly, due to the low memory usage and high efficiency of both Go and Gin, when compared to similar web frameworks and languages, such as C\# ASP.NET and Python using Flask \parencite{benchmark}. The MiniTwit application utilizes a cloud-based managed PostgreSQL database, since it allows the database to be retained even if the droplet is replaced. Additionally, to retain data and configuration files independently of droplets, an externally mounted volume with 20 GB of storage is required. Figure \ref{fig:Deployment} depicts the complete setup of deployed services.
 
 \begin{landscape}
@@ -44,13 +44,7 @@ When making choices for the MiniTwit technology stack, we emphasised tools that 
     \item \textbf{Ansible}: Manages server configuration and application deployment. Ansible provides clear, version-controlled infrastructure configuration. Initially, we were using startup scripts for setting up the VM environment, but switched over to Ansible to be able to apply changes to the VM without having to re-create it. 
 
 \end{itemize}
-\subsection{Important interactions} % micje
-%% A description of how interactions are made, and processed in the system. This should include an UML Sequence diagram, showing the aforementioned flow. 
-
-%% This needs to be done both on an API level and a GUI-based level?
-
-%% See component & connector viewpoint: https://github.com/itu-devops/lecture_notes/blob/master/sessions/session_13/Slides.md
-
+\subsection{Important interactions} 
 Whenever a user opens or tries to interact with the web-application in any way, the control flow follows figure \ref{fig:user-seq}. This applies both to actual users and API requests that are made against the application. There is, however, a small change if it is an API request; instead of looking for the individual user, it instead tries to validate the API-key.
 
 \begin{figure}[h!]
@@ -61,9 +55,7 @@ Whenever a user opens or tries to interact with the web-application in any way, 
 \end{figure}
 
 
-\subsection{Current state} %% msro
-%% A overview description of our results from the CI chain - testing,  Codeclimate and sonarqube. Everything is passing! 
-%% Be sure to include metrics. 
+\subsection{Current state}
 We used several static analysis tools and tests to keep the
 code in good shape. The current, most recent implementation
 is working correctly and passing all tests, shown in figure \ref{fig:test-workflow}.
