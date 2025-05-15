@@ -1,34 +1,24 @@
 \section{Reflection perspective} \label{rp}
-
-
-\subsection{Software Evolution and Refactoring} %% msro
-%% There should be a couple of issues to choose from in the log.
+\subsection{Software Evolution and Refactoring}
+We learned about tools that assists with refactor software to a later major version, such as the python library (\texttt{2to3}), and static analysis tools, such as \texttt{shellcheck} and linters. These tools are invaluable for ensuring that code follows best practices and remains well-maintained. Equipped with the awareness of these tools, we are able to keep all future projects in good shape. 
 
 
 \subsection{Operation} %% msro
-%% Discovering problems with usage from mining bot.
-Throughout the project, we learned a major lesson about software. Namely, the key to success is automation and fast feedback loops. If we automate testing, integration, and deployment, then the friction to get from a finished software update to a deployed, working service is minimal. This encourages software evolution in small steps, which in turns makes it much easier to spot bugs and find their cause, and bugs are also found a lot earlier.
+Throughout the project, we learned a major lesson about software. Namely, the key to success is automation and fast feedback loops. If we automate testing, integration, and deployment, then the friction to get from a finished software update to a deployed, working service is minimal. This encourages software evolution in small steps, which in turn makes it much easier to spot bugs and find their cause, and bugs are also found a lot earlier.
 
-We encountered some major issues relating to operations:
-\begin{itemize}
-    \item After implementing volumes, we had an issue where the \texttt{latest id}
-    entry used by the API was still in a text file in the code, and thus would
-    not be persisted across deployments. We fixed this issue by incorporating
-    \texttt{latest id} in the volume as a single-row single-column database
-    table. Related issue: \url{https://github.com/devops-q/devops/issues/250}
-    \item We found that we didn’t set up authentication for front of loki
-    and alloy. We tried to set it up, but without success. We then realized 
-    that loki and alloy are part of the same network and don’t need to expose ports,
-    so we stopped port exposition for them, preventing unauthorized access.
-\end{itemize}
+At some point, we found that we didn’t set up authentication at the front of Loki
+and Alloy, possibly allowing unauthorized access. We then realized 
+that Loki and Alloy are contained as part of the same network and don’t need to expose ports,
+so we stopped port exposition for them, preventing unauthorized access.
 
+\subsection{Maintenance} 
+Our system maintenance strategy focused on proactive monitoring and efficient issue resolution. To keep track of any problems, we used our Grafana dashboards, the unified dashboard \parencite["Status for All Groups"]{dashboard}, and centralized logging with Loki to identify potential issues. The simulator's continuous load testing provided additional validation, with the low number of reported errors confirming our system's overall stability in production.
 
-\subsection{Maintenance} %% alpl
-%% Staying up to date with issues, and registering problems using logging
+Despite the general reliability, we encountered occasional challenges when implementing infrastructure changes. For example, when optimizing our Docker container (\href{https://github.com/devops-q/devops/issues/250}{Issue \#250}), we migrated to a minimal \texttt{scratch} base image to reduce size and improve security. This revealed a dependency issue where our application could no longer read and write to the filesystem to track the latest message ID, as the \texttt{scratch} image lacks filesystem operations. We resolved this by migrating this functionality to a single-row database table, better aligning with stateless container principles.
 
+We also addressed user experience issues, such as timestamps displaying in UTC rather than users' local time zones (\href{https://github.com/devops-q/devops/issues/322}{Issue \#322}). Beyond implementing the immediate fix with client-side time zone conversion, we added end-to-end tests simulating requests from different time zones to prevent regression.
 
-%% THROUGHOUT THIS SECTION, WE NEED TO LINK BACK TO OLD ISSUES.
-
+Throughout the project, we continuously improved our maintenance processes by adding automated tests and monitoring for issues we encountered. This allowed us to be proactive rather than reactive, with many potential problems being caught during continuous integration before reaching production.
 
 \subsection{Our approach to DevOps} %% phbl 
-Throughout this project, we have sought to implement several DevOps practices to increase the efficiency of our workflow. Here our initial goal was to reduce the amount of time between committing code, code being review and subsequently merged, which we found to be a tedious process. One of the core ideals of DevOps is being able to reduce this lead time between committing and merging, such that developers can work faster and in smaller batches while still maintaining high code quality \parencite{handbook}. We achieved this principle through the implementation of continuous integration, providing a \textit{standardisation} measure for our coding quality using linters and tests as a requirement for merging a commit. This provided a much lower lead time, since code reviews were no longer being done before a merge - instead requiring our testing suite to pass. This fostered a culture, where each of us would be able to work on a task without any major repercussions, thereby increasing both risk-taking and experimentation. Another aspect is DevOps relates to our ability to automate repetitive tasks in an effort to reduce the time spent of a task, but in extension also avoid human errors, that might occur when multistep workflows needs are required.  
+Throughout this project, we have sought to implement several DevOps practices to increase the efficiency of our workflow. Here, our initial goal was to reduce the amount of time between committing code and code being reviewed and subsequently merged, which we found to be a tedious process. One of the core ideals of DevOps is being able to reduce this lead time between committing and merging, such that developers can work faster and in smaller batches while still maintaining high code quality \parencite{handbook}. We achieved this principle through the implementation of continuous integration, providing a \textit{standardisation} measure for our coding quality using linters and tests as a requirement for merging a commit. This provided a much lower lead time, since code reviews were no longer being done before a merge, instead requiring our testing suite to pass. This fostered a culture where each of us would be able to work on a task without any major repercussions, thereby increasing both risk-taking and experimentation. Another aspect is that DevOps relates to our ability to automate repetitive tasks in an effort to reduce the time spent on a task, but in extension also avoid human errors that might occur when multistep workflows are required.  
