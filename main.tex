@@ -1,6 +1,7 @@
 \documentclass[11pt]{article}
 \usepackage{graphicx} % Required for inserting images
 \usepackage{float}
+\usepackage{svg}
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{hyperref}
@@ -8,20 +9,22 @@
 \usepackage{titlepic}
 \usepackage[style=apa, backend=biber]{biblatex}
 \addbibresource{references.bib}
+\usepackage{pdflscape}
 
-\title{Group Q DevOps report}
+\title{Group Q DevOps report \\ \vspace{0.5em} \small Coursecode: KSDSESM1KU}
 \author{
   \begin{tabular}[t]{cc}
-    Michael Jeppesen & Marcin Sroka \\
-    \vspace{-1em} {\footnotesize \texttt{micje@itu.dk}} & {\footnotesize \texttt{msro@itu.dk}} \\ 
-    \vspace{1em} Alin Plamadeala & Philip Blomholt \\
-    {\footnotesize\texttt{alpl@itu.dk}} & {\footnotesize\texttt{phbl@itu.dk}}
+    Michael Jeppesen \ \  Marcin Sroka \\
+    \vspace{-1em} {\footnotesize \texttt{micje@itu.dk}} \ \ {\footnotesize \texttt{msro@itu.dk}} \\ 
+    \vspace{1em} Alin Plamadeala \ \ Philip Blomholt \\
+    {\footnotesize\texttt{alpl@itu.dk}} \ \ {\footnotesize\texttt{phbl@itu.dk}}
   \end{tabular}
 }
 
 \titlepic{\includegraphics[width=0.75\textwidth]{pictures/frontpage.png}}
 
 \date{\today}
+
 
 \begin{document}
 
@@ -30,9 +33,9 @@
 \newpage
 \tableofcontents
 \newpage
-\include{Introduction}
-\include{System_section}
-\include{Process_section}
-\include{Reflection_section}
+\input{System_section}
+\input{Process_section}
+\input{Reflection_section}
+\newpage
 \printbibliography
 \end{document}
