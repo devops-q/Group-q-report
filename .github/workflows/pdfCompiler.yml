@@ -23,7 +23,7 @@ jobs:
       - name: Move and rename
         run: |
 
-          mv main.pdf report/build/MSc_group_q.pdf
+          mv report/main.pdf report/build/MSc_group_q.pdf
       - name: Commit report
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
