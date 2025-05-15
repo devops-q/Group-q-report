@@ -1,9 +1,6 @@
 \section{Reflection perspective} \label{rp}
 \subsection{Software Evolution and Refactoring}
-We learned about tools that automatically refactor software to a later major version (\texttt{2to3}),
-and static analysis tools, such as \texttt{shellcheck} and linters. These tools are invaluable for
-ensuring that code follows best practices and remains well-maintained. Equipped with the awareness
-of these tools, we are able to keep all future projects in good shape. 
+We learned about tools that assists with refactor software to a later major version, such as the python library (\texttt{2to3}), and static analysis tools, such as \texttt{shellcheck} and linters. These tools are invaluable for ensuring that code follows best practices and remains well-maintained. Equipped with the awareness of these tools, we are able to keep all future projects in good shape. 
 
 
 \subsection{Operation} %% msro
@@ -15,7 +12,7 @@ that Loki and Alloy are contained as part of the same network and don’t need t
 so we stopped port exposition for them, preventing unauthorized access.
 
 \subsection{Maintenance} 
-Our system maintenance strategy focused on proactive monitoring and efficient issue resolution. To keep track of any problems, we used our Grafana dashboards, the unified "Status for All Groups" dashboard \ref{}, and centralized logging with Loki to identify potential issues. The simulator's continuous load testing provided additional validation, with the low number of reported errors confirming our system's overall stability in production.
+Our system maintenance strategy focused on proactive monitoring and efficient issue resolution. To keep track of any problems, we used our Grafana dashboards, the unified dashboard \parencite["Status for All Groups"]{dashboard}, and centralized logging with Loki to identify potential issues. The simulator's continuous load testing provided additional validation, with the low number of reported errors confirming our system's overall stability in production.
 
 Despite the general reliability, we encountered occasional challenges when implementing infrastructure changes. For example, when optimizing our Docker container (\href{https://github.com/devops-q/devops/issues/250}{Issue \#250}), we migrated to a minimal \texttt{scratch} base image to reduce size and improve security. This revealed a dependency issue where our application could no longer read and write to the filesystem to track the latest message ID, as the \texttt{scratch} image lacks filesystem operations. We resolved this by migrating this functionality to a single-row database table, better aligning with stateless container principles.
 

@@ -1,11 +1,11 @@
 \section{System perspective} \label{sp}
 \subsection{Design and architecture} %% phbl 
-The MiniTwit project is built using a single cloud-based  Virtual machine (\texttt{droplet}) with 1 CPU, 2 GB RAM, and 70 GB Storage, running 9 Docker containers in a Docker swarm setup. Three of these containers contain the MiniTwit replicas, written in Go with the \texttt{Gin} framework for web development. The decision to use Go was based on a desire to learn Go, but more importantly, due to the low memory usage and high efficiency of both Go and Gin, when compared to similar web frameworks and languages, such as C\# ASP.NET and Python using Flask \parencite{benchmark}. The MiniTwit application utilizes a cloud-based managed PostgreSQL database, since it allows the database to be retained even if the droplet is replaced. Additionally, to retain data and configuration files independently of droplets, an externally mounted volume with 20 GB of storage is required. Figure \ref{fig:Deployment} depicts the complete setup of deployed services
+The MiniTwit project is built using a single cloud-based  Virtual machine (\texttt{droplet}) with 1 CPU, 2 GB RAM, and 70 GB Storage, running 9 Docker containers in a Docker swarm setup. Three of these containers contain the MiniTwit replicas, written in Go with the \texttt{Gin} framework for web development. The decision to use Go was based on a desire to learn Go, but more importantly, due to the low memory usage and high efficiency of both Go and Gin, when compared to similar web frameworks and languages, such as C\# ASP.NET and Python using Flask \parencite{benchmark}. The MiniTwit application utilizes a cloud-based managed PostgreSQL database, since it allows the database to be retained even if the droplet is replaced. Additionally, to retain data and configuration files independently of droplets, an externally mounted volume with 20 GB of storage is required. Figure \ref{fig:Deployment} depicts the complete setup of deployed services.
 
 \begin{landscape}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{pictures/UML.drawio (5).png}
+    \includegraphics[width=1\linewidth]{pictures/deploydiag.png}
     \caption{Deployment Diagram over MiniTwit project. On the right-hand side, there are some dashed lines, which indicate provisioning from Terraform, which is used for dashboard visualisations, and setting up a droplet, a database, and a mount.}
     \label{fig:Deployment}
 \end{figure}

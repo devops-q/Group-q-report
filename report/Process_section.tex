@@ -1,8 +1,6 @@
 \section{Process perspective} \label{pp}
 
-\subsection{Stages and tools in CI/CD} % micje
-%% Include screenshots and/or UML diagram.
-%% A somewhat detailed, but complete description of our Github Action flow for CI/CD. This also includes a description of our Github rules, and how releases were made.
+\subsection{Stages and tools in CI/CD} 
 We have 3 pipelines that are triggered by various events in our  version control system:
 \begin{itemize}
     \item Committing to feature/bugfix branch.
@@ -21,16 +19,16 @@ The workflow shown in Figure \ref{fig:test-workflow} is triggered on every commi
 \end{figure}
 
 \subsubsection*{Merging PR into develop-branch}
-If all checks on the latest commit passed, a merge is allowed into the develop-branch. A merge into this branch triggers a build for a DEV environment, which is then deployed to our development environment.
+A merge into this branch triggers a build with DEV environment variables, which is then deployed to our development environment.
 
 \subsubsection*{Merging PR into main-branch}
-The workflow triggered by a merge into the main-branch is almost the same as when merging into the development-branch. Instead of making a development build, a production build is made instead, and it is deployed to our PROD environment. When a new release is successfully deployed, a release is made on GitHub.
+The workflow triggered by a merge into the main-branch is almost the same as when merging into the development-branch. A build is made with production environment variables, and it is deployed to our PROD environment. When a new release is successfully deployed, a release is made on GitHub.
 
 \subsubsection*{GitHub rule sets}
 We have 3 rules specified on GitHub to secure against potentially broken, as a release is made whenever anything is merged into main. 
 
 \begin{itemize}
-    \item The first rule is that it is only possible to merge into main from the development-branch.
+    \item The first rule is that it is only possible to merge into main from the development-branch. This is done such that our automatic tests cannot be circumvented.
     \item The second is that pull-requests are only allowed to be merged into develop if all of our tests pass.
     \item The final rule is that it is not allowed to commit directly to our main- or develop-branch, but instead always require a pull-request, such that the correct workflows are triggered.
 \end{itemize}
@@ -91,9 +89,6 @@ High   & \multicolumn{1}{l|}{SSH}                 & \multicolumn{1}{l|}{}       
 Our solution to this was to stop exposing the ports for Loki and Alloy, as they are on an internal network in the Docker Swarm, and all relevant data from them can be obtained through Grafana, where authentication is required.
 
 The reason our database does not show up as a potential attack surface is that it is running inside a VPC without public internet access, such that only our application has access to it.
-
-%\textit{Alin: Maybe it would be worth adding something about the fact that the database is running inside a VPC without public internet access, therefore only the VM can access it}
-
 \subsection{Scaling strategy} %% alpl
 %% The use of swarm as a way to scale, rolling updates, etc.
 Our project implements a containerized architecture using Docker Swarm for orchestration, with a setup that provides several key scalability advantages:
