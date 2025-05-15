@@ -13,7 +13,7 @@ Furthermore, we have set up some rules for protecting the main-branch.
 The workflow shown in Figure \ref{fig:test-workflow} is triggered on every commit, and the status check is used to decide whether a PR to develop/main can be merged.
 \begin{figure}[h!]
   \centering 
-  \includesvg[width=\textwidth]{images/Testing workflow.svg}
+  \includegraphics[width=\textwidth]{images/Testing workflow.png}
   \caption{Testing workflow}
   \label{fig:test-workflow}
 \end{figure}
@@ -103,7 +103,7 @@ Our project implements a containerized architecture using Docker Swarm for orche
 The Docker swarm cluster currently consists of just a single node, because additional nodes are not necessary at the current load levels, the load on the server reaching only 15\% of the capacity, as can be seen in figure \ref{fig:cpu_usage}, even at the highest levels of load from the simulator.
  \begin{figure}
     \centering
-    \includegraphics[width=1\linewidth]{images/CPU Usage.png}
+    \includegraphics[width=1\linewidth]{images/CPU-Usage.png}
     \caption{VM CPU Usage graph}
     \label{fig:cpu_usage}
 \end{figure}
