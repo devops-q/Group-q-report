@@ -28,6 +28,9 @@ jobs:
       - name: Set Timestamp
         id: timestamp
         run: echo "TIMESTAMP=$(date +"%Y%m%d%H%M%S")" >> $GITHUB_ENV
+      - name: Get new commit SHA
+        id: get_sha
+        run: echo "COMMIT_SHA=$(git rev-parse HEAD)" >> $GITHUB_ENV
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -38,3 +41,4 @@ jobs:
           release_name: Release ${{ env.TIMESTAMP }}
           draft: false
           prerelease: false
+          commitish: ${{ env.COMMIT_SHA }}
